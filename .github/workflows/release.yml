@@ -15,16 +15,17 @@ jobs:
         with:
           go-version: 1.17
         id: go
-      
-      - name: install clang
-        run: |
-          sudo apt install clang llvm-dev uuid-dev libssl-dev libbz2-dev
-      
+
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Fetch tags
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+      - name: OSXCross for CGO Support
+        run: |
+          mkdir ../../osxcross
+          git clone https://github.com/plentico/osxcross-target.git ../../osxcross/target
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
