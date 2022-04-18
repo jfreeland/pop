@@ -22,7 +22,6 @@ builds:
     - -tags
     - sqlite
 
-builds:
 - id: pop_darwin_arm64
   binary: soda
   main: soda/main.go
