@@ -12,13 +12,30 @@ builds:
     - darwin
   goarch:
     - amd64
+  ldflags:
+    - -s
+  env:
+    - CGO_ENABLED=1
+    - CC=/osxcross/target/bin/o64-clang
+    - CXX=/osxcross/target/bin/o64-clang++
+  flags:
+    - -tags
+    - sqlite
+
+builds:
+- id: pop_darwin_arm64
+  binary: soda
+  main: soda/main.go
+  goos:
+    - darwin
+  goarch:
     - arm64
   ldflags:
     - -s
   env:
     - CGO_ENABLED=1
-    - CC=/home/runner/work/osxcross/target/bin/o64-clang
-    - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
+    - CC=/osxcross/target/bin/oa64-clang
+    - CXX=/osxcross/target/bin/oa64-clang++
   flags:
     - -tags
     - sqlite
